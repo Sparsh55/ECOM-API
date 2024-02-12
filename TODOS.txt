@@ -1,0 +1,3 @@
+1. Add necessary validation in cart.model.js to check user and product exists or not
+2. When same user wants to add same product it will replace the existing cart item
+3. Log error messages

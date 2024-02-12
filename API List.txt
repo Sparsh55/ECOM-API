@@ -1,0 +1,15 @@
+Product Controller
+🔵 Get Products - ✔️
+🔵 Add a Product - ✔️
+🔵 Get one Product - ✔️
+🔵 Rate Product - ✔️
+🔵 Filter Product - ✔️
+
+Cart Controller
+🔵 Add items to the Cart - ✔️
+🔵 Remove item from Cart - ✔️
+🔵 Get items from Cart - ✔️
+
+User Controller
+🔵 Register User - ✔️ (Name, Email, Password, Type of User (Customer/Seller))
+🔵 Login User - ✔️ (Email, Password)

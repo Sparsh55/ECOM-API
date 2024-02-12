@@ -1,0 +1,63 @@
+MongoDB Aggregate
+
+
+Example 1: To find the average of the ratings of products
+
+db.products.aggregate(
+    [
+        // 1. Create documents for every ratings
+        {
+            $unwind:"$ratings"
+        },
+        // 2. Group by product and calculate the average rating
+        {
+            $group:{
+                _id:"$name",
+                avgRating:{ $avg:"$ratings.rating" }
+            }
+        }
+    ]
+)
+
+
+Example 2: Count ratings of our products
+
+db.products.aggregate(
+    [
+        // 1. Project name and Count of rating
+        {
+            $project: { 
+                name: 1, 
+                countOfRatings:
+                {
+                    $cond:{if:{$isArray:"$ratings"} , then:{$size:"$ratings"} , else:0} 
+                }
+            }
+        }  
+    ]
+)
+
+Example 3: Count the product with highest number of ratings
+
+db.products.aggregate(
+    [
+        // 1. Project name and Count of rating
+        {
+            $project: { 
+                name: 1, 
+                countOfRatings:
+                {
+                    $cond:{if:{$isArray:"$ratings"} , then:{$size:"$ratings"} , else:0} 
+                }
+            }
+        },
+        // 2. Sort in descending order based on countOfRatings
+        {
+            $sort : {countOfRatings:-1}
+        },
+        // 3. Limit just 1 item in the result
+        {
+            $limit:1
+        }
+    ]
+)
